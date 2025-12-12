@@ -48,7 +48,6 @@ export class LarkService {
       );
 
       this.accessToken = response.data.access_token;
-      // Establecer expiración (restar 5 minutos como margen)
       this.tokenExpiry = new Date(
         Date.now() + (response.data.expires_in - 300) * 1000,
       );

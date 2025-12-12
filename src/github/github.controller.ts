@@ -30,8 +30,7 @@ export class GithubController {
     @Headers("X-GitHub-Event") event: string,
     @Headers("X-Hub-Signature-256") signature: string,
     @Body() payload: GithubWebhookDto,
-  ) {
-    // Verificar firma
+  ): Promise<{ received: boolean }> {
     const isValid = await this.githubService.verifySignature(
       signature,
       JSON.stringify(payload),
@@ -41,7 +40,6 @@ export class GithubController {
       throw new Error("Invalid signature");
     }
 
-    // Procesar según el tipo de evento
     if (event === "pull_request") {
       await this.githubService.handlePullRequest(payload);
     }

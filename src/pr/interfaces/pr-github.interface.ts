@@ -1,5 +1,3 @@
-// pr/interfaces/pr-data.interface.ts
-
 export interface GithubUser {
   login: string;
   html_url: string;

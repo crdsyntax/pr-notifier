@@ -1,4 +1,3 @@
-// pr/pr.service.ts
 import { Injectable } from "@nestjs/common";
 
 export interface PrData {
@@ -17,7 +16,6 @@ export interface PrData {
 @Injectable()
 export class PrService {
   formatPrMessage(prData: PrData): any {
-    // Determinar emoji según acción
     const actionEmoji =
       {
         opened: "🎯",
@@ -25,7 +23,6 @@ export class PrService {
         synchronize: "🔄",
       }[prData.action] || "📌";
 
-    // Formatear descripción (truncar si es muy larga)
     const description =
       prData.description.length > 200
         ? `${prData.description.substring(0, 200)}...`
